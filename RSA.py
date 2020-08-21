@@ -1,6 +1,6 @@
 import rsa
 
-class RSA:
+class RSA:  
     def __init__(self):
         self.keys = ()
         self.publicKey = []
@@ -30,6 +30,17 @@ class RSA:
         return self.EncryptedMessage
     def decrypt(self, message):
         message = bytes(message,'ISO-8859-1').decode('unicode_escape').encode('ISO-8859-1')
-        self.DecryptedMessage = rsa.decrypt(message, self.privateKey)
-        return str(self.DecryptedMessage)[2:-1]
-    
+        self.DecryptedMessage = rsa.decrypt(message, self.privateKey).decode('utf-8')
+        return self.DecryptedMessage
+
+_init = RSA()
+getNewKey = _init.getNewKey
+
+getPublicKey = _init.getPublicKey
+getPrivateKey = _init.getPrivateKey
+
+selectPublicKey = _init.selectPublicKey
+selectPrivateKey = _init.selectPrivateKey
+
+encrypt = _init.encrypt
+decrypt = _init.decrypt
